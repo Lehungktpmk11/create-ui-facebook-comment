@@ -1,0 +1,25 @@
+<form
+  [formGroup]="form"
+  class="comment-form comment-form--edit"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="comment-form__avatar" *ngIf="img !== null">
+    <img src="{{ userLogin.img }}" alt="" />
+  </div>
+  <textarea
+    formControlName="title"
+    class="comment-form__textarea"
+    placeholder="write something"
+  ></textarea>
+  <button class="comment-form-button" type="submit" [disabled]="!form.valid">
+    {{ submitLabel }}
+  </button>
+  <button
+    *ngIf="hasCancelButton"
+    type="button"
+    class="comment-form-button comment-form-cancel-button"
+    (click)="handleCancel.emit()"
+  >
+    Hủy bỏ
+  </button>
+</form>

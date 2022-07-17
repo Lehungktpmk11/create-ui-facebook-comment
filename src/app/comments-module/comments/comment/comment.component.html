@@ -1,0 +1,75 @@
+<div class="comment">
+  <div class="comment__avatar">
+    <img src="{{ comment.userImg }}" alt="" />
+  </div>
+  <div class="comment-right">
+    <div class="commnet-content">
+      <div class="comment-content__user">{{ comment.username }}</div>
+      <div class="comment-content__body" *ngIf="!isEditing()">
+        {{ comment.body }}
+      </div>
+    </div>
+    <comment-form
+      *ngIf="isEditing()"
+      submitLabel="Update"
+      [hasCancelButton]="true"
+      [initialText]="comment.body"
+      (handleSubmit)="
+        updateComment.emit({ text: $event, commentId: comment.id })
+      "
+      (handleCancel)="setActiveComment.emit(null)"
+    ></comment-form>
+    <div class="comment-action">
+      <div
+        class="comment-action__btn"
+        *ngIf="canReply"
+        (click)="
+          setActiveComment.emit({
+            id: comment.id,
+            type: activeCommentType.replying
+          })
+        "
+      >
+        Reply
+      </div>
+      <div
+        class="comment-action__btn"
+        *ngIf="canEdit"
+        (click)="
+          setActiveComment.emit({
+            id: comment.id,
+            type: activeCommentType.editing
+          })
+        "
+      >
+        Edit
+      </div>
+      <div
+        class="comment-action__btn"
+        *ngIf="canDelete"
+        (click)="deleteComment.emit(comment.id)"
+      >
+        Delete
+      </div>
+    </div>
+    <comment-form
+      [img]="comment.userImg"
+      *ngIf="isReplying()"
+      submitLabel="Reply"
+      (handleSubmit)="addComment.emit({ text: $event, parentId: replyId })"
+    ></comment-form>
+    <div class="replies" *ngIf="replies.length > 0">
+      <comment
+        *ngFor="let reply of replies"
+        [comment]="reply"
+        [userId]="userId"
+        [replies]="[]"
+        [activeComment]="activeComment"
+        [parentId]="comment.id"
+        (setActiveComment)="setActiveComment.emit($event)"
+        (addComment)="addComment.emit($event)"
+        (updateComment)="updateComment.emit($event)"
+      ></comment>
+    </div>
+  </div>
+</div>

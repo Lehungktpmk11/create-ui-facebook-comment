@@ -1,0 +1,22 @@
+<div class="comments">
+  <h3 class="comment-titlte">Comments</h3>
+  <!-- <div class="comment-form-title">write an answer...</div> -->
+  <comment-form
+    [img]="userLogin.img"
+    submitLabel="Answer"
+    (handleSubmit)="addComment({ text: $event, parentId: null })"
+  ></comment-form>
+  <div class="comments-container">
+    <comment
+      *ngFor="let comment of commentsNotChild"
+      [comment]="comment"
+      [userId]="userId"
+      [replies]="getReplies(comment.id)"
+      [activeComment]="activeComment"
+      (setActiveComment)="setActiveComment($event)"
+      (addComment)="addComment($event)"
+      (updateComment)="updateComment($event)"
+      (deleteComment)="deleteComment($event)"
+    ></comment>
+  </div>
+</div>
