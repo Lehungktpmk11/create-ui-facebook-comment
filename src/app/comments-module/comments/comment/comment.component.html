@@ -5,20 +5,28 @@
   <div class="comment-right">
     <div class="commnet-content">
       <div class="comment-content__user">{{ comment.username }}</div>
-      <div class="comment-content__body" *ngIf="!isEditing()">
+      <div
+        class="comment-content__body"
+        *ngIf="!isEditing(); else otherContent"
+      >
         {{ comment.body }}
       </div>
+      <ng-template #otherContent>
+        <div>
+          <comment-form
+            *ngIf="isEditing()"
+            submitLabel="Update"
+            [hasCancelButton]="true"
+            [initialText]="comment.body"
+            (handleSubmit)="
+              updateComment.emit({ text: $event, commentId: comment.id })
+            "
+            (handleCancel)="setActiveComment.emit(null)"
+          ></comment-form>
+        </div>
+      </ng-template>
     </div>
-    <comment-form
-      *ngIf="isEditing()"
-      submitLabel="Update"
-      [hasCancelButton]="true"
-      [initialText]="comment.body"
-      (handleSubmit)="
-        updateComment.emit({ text: $event, commentId: comment.id })
-      "
-      (handleCancel)="setActiveComment.emit(null)"
-    ></comment-form>
+
     <div class="comment-action">
       <div
         class="comment-action__btn"
@@ -69,6 +77,7 @@
         (setActiveComment)="setActiveComment.emit($event)"
         (addComment)="addComment.emit($event)"
         (updateComment)="updateComment.emit($event)"
+        (deleteComment)="deleteComment.emit($event)"
       ></comment>
     </div>
   </div>

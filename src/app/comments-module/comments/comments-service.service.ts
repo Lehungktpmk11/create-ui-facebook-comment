@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { CommentsInerface } from './comments-inerface';
 
 @Injectable()
@@ -9,8 +8,8 @@ export class CommentsServiceService {
   comments: CommentsInerface[] = [
     {
       id: '1',
-      body: 'first comment',
-      username: 'hunglm',
+      body: "Can't wait to see their live training videos like it's done in other clubs . Especially haaland can't wait to see his training videos",
+      username: 'Taiga Sae',
       userId: '1',
       parentId: null,
       userImg:
@@ -19,8 +18,8 @@ export class CommentsServiceService {
     },
     {
       id: '2',
-      body: 'second comment',
-      username: 'anhbm',
+      body: 'I think Haaland has scored already before you guys landed',
+      username: 'Shishi Kakeru ',
       userId: '2',
       userImg:
         'https://i.pinimg.com/236x/ff/90/88/ff90884c01cb44efcee053c9a1329995.jpg',
@@ -29,8 +28,8 @@ export class CommentsServiceService {
     },
     {
       id: '3',
-      body: 'third comment',
-      username: 'khiemnd2',
+      body: 'Who is best \n Messi ❤ \n Ronaldo 😁',
+      username: 'Ougami Tsukamaro',
       userId: '3',
       userImg:
         'https://i.pinimg.com/originals/bc/24/39/bc2439e3e270f254f8a42c002cd70d5f.jpg',
@@ -39,8 +38,8 @@ export class CommentsServiceService {
     },
     {
       id: '4',
-      body: 'fisrt child comment',
-      username: 'anhbm',
+      body: 'It was the only club I was seeing my future with and I am very happy',
+      username: 'Shishi Kakeru',
       userId: '2',
       userImg:
         'https://i.pinimg.com/236x/ff/90/88/ff90884c01cb44efcee053c9a1329995.jpg',
@@ -49,8 +48,8 @@ export class CommentsServiceService {
     },
     {
       id: '5',
-      body: 'third child comment',
-      username: 'hunglm',
+      body: 'We are delighted to announce that Riyad Mahrez has signed a new two-year contract extension! ',
+      username: 'Taiga Sae',
       userId: '1',
       userImg:
         'https://i.pinimg.com/736x/2d/98/38/2d983897d76d454d7433f07341c4a25f.jpg',
@@ -72,7 +71,7 @@ export class CommentsServiceService {
       userId: '1',
       userImg:
         'https://i.pinimg.com/736x/2d/98/38/2d983897d76d454d7433f07341c4a25f.jpg',
-      username: 'hunglm',
+      username: 'Taiga Sae',
       id: this.makeRandom(this.lengthOfCode, this.possible),
     };
     this.comments = [...this.comments, createdComment];

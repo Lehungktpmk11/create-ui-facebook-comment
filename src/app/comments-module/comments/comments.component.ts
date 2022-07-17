@@ -36,7 +36,6 @@ export class CommentsComponent implements OnInit {
   }
 
   deleteComment(commentId: string) {
-    console.log('delete');
     this.comments = this.commentsService.deleteComment(commentId);
     this.updateListComment(this.comments);
   }

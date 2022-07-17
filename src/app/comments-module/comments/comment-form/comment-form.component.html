@@ -1,25 +1,41 @@
-<form
-  [formGroup]="form"
-  class="comment-form comment-form--edit"
-  (ngSubmit)="onSubmit()"
->
-  <div class="comment-form__avatar" *ngIf="img !== null">
-    <img src="{{ userLogin.img }}" alt="" />
+<div *ngIf="hasCancelButton; else otherContent">
+  <form [formGroup]="form" class="comment-form--edit" (ngSubmit)="onSubmit()">
+    <textarea
+      formControlName="title"
+      class="comment-form__textarea"
+      placeholder="write something"
+    ></textarea>
+    <button class="comment-form-button" type="submit" [disabled]="!form.valid">
+      {{ submitLabel }}
+    </button>
+    <button
+      *ngIf="hasCancelButton"
+      type="button"
+      class="comment-form-button comment-form-cancel-button"
+      (click)="handleCancel.emit()"
+    >
+      Hủy bỏ
+    </button>
+  </form>
+</div>
+<ng-template #otherContent>
+  <div>
+    <form [formGroup]="form" class="comment-form" (ngSubmit)="onSubmit()">
+      <div class="comment-form__avatar">
+        <img src="{{ userLogin.img }}" alt="" />
+      </div>
+      <textarea
+        formControlName="title"
+        class="comment-form__textarea"
+        placeholder="write something"
+      ></textarea>
+      <button
+        class="comment-form-button"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        {{ submitLabel }}
+      </button>
+    </form>
   </div>
-  <textarea
-    formControlName="title"
-    class="comment-form__textarea"
-    placeholder="write something"
-  ></textarea>
-  <button class="comment-form-button" type="submit" [disabled]="!form.valid">
-    {{ submitLabel }}
-  </button>
-  <button
-    *ngIf="hasCancelButton"
-    type="button"
-    class="comment-form-button comment-form-cancel-button"
-    (click)="handleCancel.emit()"
-  >
-    Hủy bỏ
-  </button>
-</form>
+</ng-template>

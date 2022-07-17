@@ -1,22 +1,32 @@
-<div class="comments">
-  <h3 class="comment-titlte">Comments</h3>
-  <!-- <div class="comment-form-title">write an answer...</div> -->
-  <comment-form
-    [img]="userLogin.img"
-    submitLabel="Answer"
-    (handleSubmit)="addComment({ text: $event, parentId: null })"
-  ></comment-form>
-  <div class="comments-container">
-    <comment
-      *ngFor="let comment of commentsNotChild"
-      [comment]="comment"
-      [userId]="userId"
-      [replies]="getReplies(comment.id)"
-      [activeComment]="activeComment"
-      (setActiveComment)="setActiveComment($event)"
-      (addComment)="addComment($event)"
-      (updateComment)="updateComment($event)"
-      (deleteComment)="deleteComment($event)"
-    ></comment>
+<div class="container">
+  <div class="info"></div>
+
+  <div class="comments">
+    <div>
+      <img
+        class="comment__img"
+        src="https://scontent.fhan15-1.fna.fbcdn.net/v/t39.30808-6/294118954_10167234287395455_6706880566828489521_n.jpg?stp=dst-jpg_p526x395&_nc_cat=1&ccb=1-7&_nc_sid=730e14&_nc_ohc=UOb7HgmM61AAX--Au1_&_nc_oc=AQlhI-laJAqhz-IJhMFUN7VdVwj0xd_TfeUUlgmT4NsmJYnn-P6b9ipfjMLysO-zlzf1wHKEgLzd-JeXLD5YzI7u&tn=iFFT6TENHOzf0ez5&_nc_ht=scontent.fhan15-1.fna&oh=00_AT9UO-JfaxsrLOmaGio67vGkX5CCfFp4eMQOZ2migbgxyQ&oe=62D8CA8F"
+        alt=""
+      />
+    </div>
+    <h3 class="comment-titlte">Comments</h3>
+    <comment-form
+      [img]="userLogin.img"
+      submitLabel="Answer"
+      (handleSubmit)="addComment({ text: $event, parentId: null })"
+    ></comment-form>
+    <div class="comments-container">
+      <comment
+        *ngFor="let comment of commentsNotChild"
+        [comment]="comment"
+        [userId]="userId"
+        [replies]="getReplies(comment.id)"
+        [activeComment]="activeComment"
+        (setActiveComment)="setActiveComment($event)"
+        (addComment)="addComment($event)"
+        (updateComment)="updateComment($event)"
+        (deleteComment)="deleteComment($event)"
+      ></comment>
+    </div>
   </div>
 </div>
